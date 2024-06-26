@@ -47,6 +47,7 @@
         // window.setInterval(updateTime, 500);
         // });
         function onReady(event) {
+            console.log("开始了开始了✅", event.data);
             webkit.messageHandlers.onReady.postMessage('');
         }
         function onStateChange(event) {
