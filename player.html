@@ -311,10 +311,12 @@
 
                 //开始监听
                 function startObserve() {
+                    document.querySelectorAll('.ytp-pause-overlay').forEach(function (element) {
+                        element.remove();
+                    });
                     //广告节点监听
                     const recommendNode = document.querySelectorAll('.ytp-pause-overlay');
                     if (recommendNode.length <= 0) {
-                        console.log(`正在寻找待监听的推荐目标节点`);
                         return false;
                     }
                     //监听视频中的广告并处理
