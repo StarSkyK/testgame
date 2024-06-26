@@ -28,7 +28,11 @@
             player = new YT.Player('player', {
                 width: 1280,
                 height: 720,
-                videoId: 'DYptgVvkVLQ'
+                videoId: 'DYptgVvkVLQ',
+                events: {
+                    'onReady': onReady,
+                    'onStateChange': onStateChange
+                }
             });
         }
 
@@ -46,7 +50,7 @@
             webkit.messageHandlers.onReady.postMessage('');
         }
         function onStateChange(event) {
-            console.log("状态改变",event.data);
+            console.log("状态改变", event.data);
             webkit.messageHandlers.onStateChange.postMessage(event.data);
         }
         function onPlaybackQualityChange(event) {
