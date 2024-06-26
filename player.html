@@ -52,6 +52,8 @@
             webkit.messageHandlers.onReady.postMessage('');
         }
         function onStateChange(event) {
+            console.log("✅播放状态改变");
+            removeRecommend();
             webkit.messageHandlers.onStateChange.postMessage(event.data);
         }
         function onPlaybackQualityChange(event) {
