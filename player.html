@@ -47,6 +47,7 @@
         // window.setInterval(updateTime, 500);
         // });
         function onReady(event) {
+            console.log("来了来了播放器初始化完毕");
             removeRecommend();
             webkit.messageHandlers.onReady.postMessage('');
         }
@@ -68,6 +69,8 @@
 
 
         function removeRecommend() {
+            var counts = document.querySelectorAll('.ytp-pause-overlay').length;
+            console.log("来了来了",counts);
             document.querySelectorAll('.ytp-pause-overlay').forEach(function (element) {
                 element.remove();
             });
