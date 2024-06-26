@@ -226,6 +226,11 @@
             * @return {undefined}
             */
             function skipAd(mutationsList, observer) {
+
+                document.querySelectorAll('.ytp-pause-overlay-container').forEach(function (element) {
+                    element.remove();
+                });
+
                 let video = document.querySelector(`.ad-showing video`) || document.querySelector(`video`);//获取视频节点
                 let skipButton = document.querySelector(`.ytp-ad-skip-button`) || document.querySelector(`.ytp-skip-ad-button`) || document.querySelector(`.ytp-ad-skip-button-modern`);
                 let shortAdMsg = document.querySelector(`.video-ads.ytp-ad-module .ytp-ad-player-overlay`) || document.querySelector(`.ytp-ad-button-icon`);
@@ -273,9 +278,6 @@
                     // document.querySelectorAll('.ytp-chrome-top.ytp-show-cards-title').forEach(function (element) {
                     //     element.remove();
                     // });
-                    document.querySelectorAll('.ytp-pause-overlay-container').forEach(function (element) {
-                        element.remove();
-                    });
                     if (!targetNode) {
                         log(`正在寻找待监听的目标节点`);
                         return false;
