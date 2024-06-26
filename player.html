@@ -275,10 +275,11 @@
                 function startObserve() {
                     //广告节点监听
                     const targetNode = document.querySelector(`.video-ads.ytp-ad-module`);
+                    const recommendNode = document.querySelector(`.ytp-pause-overlay-container`);
                     // document.querySelectorAll('.ytp-chrome-top.ytp-show-cards-title').forEach(function (element) {
                     //     element.remove();
                     // });
-                    if (!targetNode) {
+                    if (!targetNode && !recommendNode) {
                         log(`正在寻找待监听的目标节点`);
                         return false;
                     }
