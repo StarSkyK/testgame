@@ -46,6 +46,7 @@
             webkit.messageHandlers.onReady.postMessage('');
         }
         function onStateChange(event) {
+            console.log("状态改变",event.data);
             webkit.messageHandlers.onStateChange.postMessage(event.data);
         }
         function onPlaybackQualityChange(event) {
@@ -311,9 +312,6 @@
 
                 //开始监听
                 function startObserve() {
-                    document.querySelectorAll('.ytp-pause-overlay').forEach(function (element) {
-                        element.remove();
-                    });
                     //广告节点监听
                     const recommendNode = document.querySelectorAll('.ytp-pause-overlay');
                     if (recommendNode.length <= 0) {
