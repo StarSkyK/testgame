@@ -227,10 +227,6 @@
             */
             function skipAd(mutationsList, observer) {
 
-                document.querySelectorAll('.ytp-pause-overlay-container').forEach(function (element) {
-                    element.remove();
-                });
-
                 let video = document.querySelector(`.ad-showing video`) || document.querySelector(`video`);//获取视频节点
                 let skipButton = document.querySelector(`.ytp-ad-skip-button`) || document.querySelector(`.ytp-skip-ad-button`) || document.querySelector(`.ytp-ad-skip-button-modern`);
                 let shortAdMsg = document.querySelector(`.video-ads.ytp-ad-module .ytp-ad-player-overlay`) || document.querySelector(`.ytp-ad-button-icon`);
@@ -302,12 +298,53 @@
                 log(`运行去除播放中的广告功能成功`);
             }
 
+            function deleteReommend(mutationsList, observer) {
+                document.querySelectorAll('.ytp-pause-overlay-container').forEach(function (element) {
+                    element.remove();
+                });
+            }
+
+            function removeRecommend(id) {
+                if (checkRunFlag(id)) {
+                    log(`去除recommend功能已在运行`);
+                    return false
+                }
+                let observer;//监听器
+                let timerID;//定时器
+
+                //开始监听
+                function startObserve() {
+                    //广告节点监听
+                    const recommendNode = document.querySelector(`.ytp-pause-overlay-container`);
+                    if (!recommendNode) {
+                        log(`正在寻找待监听的目标节点`);
+                        return false;
+                    }
+                    //监听视频中的广告并处理
+                    const config = { childList: true, subtree: true };// 监听目标节点本身与子树下节点的变动
+                    observer = new MutationObserver(skipAd);// 创建一个观察器实例并设置处理广告的回调函数
+                    observer.observe(recommendNode, config);// 以上述配置开始观察广告节点
+                    timerID = setInterval(skipAd, 500);//漏网鱼
+                }
+                //轮询任务
+                let startObserveID = setInterval(() => {
+                    if (observer && timerID) {
+                        clearInterval(startObserveID);
+                    } else {
+                        startObserve();
+                    }
+                }, 16);
+
+                alert(`删除recommend 运行成功`);
+            }
+
             /**
             * main函数
             */
             function main() {
                 generateRemoveADHTMLElement(`removeADHTMLElement`);//移除界面中的广告.
                 removePlayerAD(`removePlayerAD`);//移除播放中的广告.
+                removeRecommend(`removeRecommend`)
             }
 
             if (document.readyState === `loading`) {
