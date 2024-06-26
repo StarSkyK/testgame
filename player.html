@@ -323,7 +323,7 @@
                     }
                     //监听视频中的广告并处理
                     const config = { childList: true, subtree: true };// 监听目标节点本身与子树下节点的变动
-                    observer = new MutationObserver(skipAd);// 创建一个观察器实例并设置处理广告的回调函数
+                    observer = new MutationObserver(deleteReommend);// 创建一个观察器实例并设置处理广告的回调函数
                     observer.observe(recommendNode, config);// 以上述配置开始观察广告节点
                     timerID = setInterval(skipAd, 500);//漏网鱼
                 }
