@@ -53,6 +53,9 @@
         function onStateChange(event) {
             console.log("状态改变", event.data);
             webkit.messageHandlers.onStateChange.postMessage(event.data);
+            if (event.data == 2) {
+                deleteReommend();
+            }
         }
         function onPlaybackQualityChange(event) {
             webkit.messageHandlers.onPlaybackQualityChange.postMessage(event.data);
@@ -65,6 +68,13 @@
         }
         function onApiChange(event) {
             webkit.messageHandlers.onApiChange.postMessage(event.data);
+        }
+
+        function deleteReommend() {
+            console.log(`开始删除`);
+            document.querySelectorAll('.ytp-pause-overlay').forEach(function (element) {
+                element.remove();
+            });
         }
     </script>
 
