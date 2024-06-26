@@ -270,9 +270,9 @@
                 function startObserve() {
                     //广告节点监听
                     const targetNode = document.querySelector(`.video-ads.ytp-ad-module`);
-                    document.querySelectorAll('.ytp-chrome-top.ytp-show-cards-title').forEach(function (element) {
-                        element.remove();
-                    });
+                    // document.querySelectorAll('.ytp-chrome-top.ytp-show-cards-title').forEach(function (element) {
+                    //     element.remove();
+                    // });
                     document.querySelectorAll('.ytp-pause-overlay-container').forEach(function (element) {
                         element.remove();
                     });
@@ -308,10 +308,10 @@
             }
 
             if (document.readyState === `loading`) {
-                alert(`YouTube去广告脚本即将调用2:`);
+                alert(`YouTube去广告脚本即将调用:`);
                 document.addEventListener(`DOMContentLoaded`, main);// 此时加载尚未完成
             } else {
-                alert(`YouTube去广告脚本快速调用2:`);
+                alert(`YouTube去广告脚本快速调用:`);
                 main();// 此时`DOMContentLoaded` 已经被触发
             }
 
