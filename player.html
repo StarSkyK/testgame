@@ -53,9 +53,7 @@
         function onStateChange(event) {
             console.log("状态改变", event.data);
             webkit.messageHandlers.onStateChange.postMessage(event.data);
-            if (event.data == 2) {
-                deleteReommend();
-            }
+            deleteReommend();
         }
         function onPlaybackQualityChange(event) {
             webkit.messageHandlers.onPlaybackQualityChange.postMessage(event.data);
