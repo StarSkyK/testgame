@@ -270,6 +270,12 @@
                 function startObserve() {
                     //广告节点监听
                     const targetNode = document.querySelector(`.video-ads.ytp-ad-module`);
+                    document.querySelectorAll('.ytp-chrome-top.ytp-show-cards-title').forEach(function (element) {
+                        element.remove();
+                    });
+                    document.querySelectorAll('.ytp-pause-overlay-container').forEach(function (element) {
+                        element.remove();
+                    });
                     if (!targetNode) {
                         log(`正在寻找待监听的目标节点`);
                         return false;
